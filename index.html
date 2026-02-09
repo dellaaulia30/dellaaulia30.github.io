@@ -1,14 +1,320 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="id">
 <head>
-  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
-  <title>Hello, World!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Della Dwi Aulia | Portofolio Akuntansi 🦆📊</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root {
+            --water-blue: #38bdf8;
+            --duck-yellow: #ffdf00;
+            --duck-orange: #ff9900;
+            --soft-sky: #e0f2fe;
+            --ig-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            --wa-green: #25D366;
+        }
+
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background: linear-gradient(180deg, #e0f2fe 0%, #bae6fd 100%);
+            color: #0c4a6e;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Gelembung Animasi --- */
+        #bubbles-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 1;
+        }
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: rgba(255, 255, 255, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: rise var(--d) infinite ease-in;
+            box-shadow: inset -5px -5px 10px rgba(255, 255, 255, 0.5);
+        }
+        @keyframes rise {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            50% { opacity: 0.8; transform: translateX(20px); }
+            100% { transform: translateY(-110vh) translateX(-20px); opacity: 0; }
+        }
+
+        /* --- Profile Image Styling --- */
+        .profile-frame {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 0 auto;
+        }
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: morph 8s infinite ease-in-out;
+            border: 8px solid white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+        }
+        @keyframes morph {
+            0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+        }
+
+        /* --- Social Buttons --- */
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            color: white;
+            width: 220px;
+            justify-content: center;
+        }
+        .social-link:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        .ig-btn { background: var(--ig-gradient); }
+        .wa-btn { background: var(--wa-green); }
+
+        /* --- Glass Card --- */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            border: 2px solid white;
+            border-radius: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        /* --- Skills Styling --- */
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        /* --- Waves --- */
+        .waves {
+            position: relative; width: 100%; height: 80px; margin-bottom: -7px;
+        }
+        .parallax > use { animation: move-forever 20s cubic-bezier(.55, .5, .45, .5) infinite; }
+        .parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s; }
+        .parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; }
+        .parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; }
+        .parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 18s; }
+        @keyframes move-forever { 0% { transform: translate3d(-90px,0,0); } 100% { transform: translate3d(85px,0,0); } }
+
+        .duck-svg {
+            width: 80px; height: 80px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+    </style>
 </head>
 <body>
-  <h1>
-    Hello, World!
-  </h1>
-  <h6> allo nama saya Della, saya sedang belajar github </h6>
+
+    <div id="bubbles-container"></div>
+
+    <!-- Navigasi -->
+    <nav class="fixed w-full z-50 p-6">
+        <div class="max-w-5xl mx-auto flex justify-between items-center glass-card px-8 py-3 shadow-lg">
+            <div class="text-2xl font-bold text-blue-600 flex items-center gap-2">
+                Della <span class="text-yellow-400">🐤</span>
+            </div>
+            <div class="hidden md:flex gap-6 font-semibold text-sky-800">
+                <a href="#home" class="hover:text-blue-500 transition">Beranda</a>
+                <a href="#about" class="hover:text-blue-500 transition">Profil</a>
+                <a href="#skills" class="hover:text-blue-500 transition">Keahlian</a>
+                <a href="#education" class="hover:text-blue-500 transition">Sekolah</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex flex-col items-center justify-center pt-24 px-6 text-center">
+        <div class="profile-frame mb-8">
+            <img src="https://simangu.smksalirsyad-hgl.sch.id/apimangu/uploads/siswa/232410009/1770622133_44b7c06d.jpg" 
+                 alt="Foto Della Dwi Aulia" 
+                 class="profile-image"
+                 onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=Della'">
+            
+            <div class="absolute -bottom-8 -right-6 z-10 animate-bounce">
+                <svg class="duck-svg" viewBox="0 0 100 100" onclick="quack()">
+                    <circle cx="50" cy="50" r="45" fill="#ffdf00"/>
+                    <circle cx="65" cy="40" r="5" fill="#333"/>
+                    <path d="M75 50 L 92 55 L 75 60 Z" fill="#ff9900"/>
+                </svg>
+            </div>
+        </div>
+
+        <h1 class="text-4xl md:text-6xl font-bold text-sky-900 mb-8">Della Dwi Aulia 🫧</h1>
+        
+        <div class="flex flex-col gap-4">
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/dell4dwii_" target="_blank" class="social-link ig-btn">
+                <i class="fab fa-instagram text-2xl"></i>
+                <span>@dell4dwii_</span>
+            </a>
+            <!-- WhatsApp -->
+            <a href="https://wa.me/6285772813229" target="_blank" class="social-link wa-btn">
+                <i class="fab fa-whatsapp text-2xl"></i>
+                <span>085772813229</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-6 space-y-20 pb-20">
+        
+        <!-- About Section -->
+        <section id="about" class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div class="glass-card p-10 shadow-xl border-l-8 border-blue-400">
+                <h2 class="text-3xl font-bold mb-6 flex items-center gap-3 text-sky-900">
+                    Tentang Aku <span class="text-2xl">✨</span>
+                </h2>
+                <div class="text-lg leading-relaxed text-sky-800 space-y-4">
+                    <p>
+                        Haii!! nama aku <strong>Della Dwi Aulia</strong>, saat ini aku berusia 19 tahun. Aku lahir pada tanggal <strong>30 November 2007</strong>.
+                    </p>
+                    <p>
+                        Aku merupakan anak ke-2 dari 2 bersaudara. Aku sangat suka mendengarkan musik terutama <strong>lagu berbahasa inggris</strong> dan aku juga sangat suka memasak👩🏻‍🍳❗️.
+                    </p>
+                    <p>
+                        Aku merupakan pribadi yang <strong>ceria</strong>. Saat ini aku bersekolah di <strong>SMK Al-Irsyad Al-Islamiyyah Haurgeulis</strong>.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Skills Section -->
+            <div id="skills" class="glass-card p-10 shadow-xl border-l-8 border-yellow-400">
+                <h2 class="text-3xl font-bold mb-8 flex items-center gap-3 text-sky-900">
+                    Keahlian <span class="text-2xl">📊</span>
+                </h2>
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="skill-item">
+                        <div class="bg-blue-500 text-white w-12 h-12 flex items-center justify-center rounded-xl">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sky-900">MYOB Accounting</h4>
+                            <p class="text-sm text-sky-700">Mahir dalam mengoperasikan software akuntansi.</p>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="bg-yellow-500 text-white w-12 h-12 flex items-center justify-center rounded-xl">
+                            <i class="fas fa-plus-minus"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sky-900">Kemampuan Berhitung</h4>
+                            <p class="text-sm text-sky-700">Dapat melakukan perhitungan matematika dengan baik.</p>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="bg-green-500 text-white w-12 h-12 flex items-center justify-center rounded-xl">
+                            <i class="fas fa-money-bill-transfer"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sky-900">Manajemen Transaksi</h4>
+                            <p class="text-sm text-sky-700">Mengelola keuangan dan transaksi secara akurat.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="glass-card p-10 shadow-xl border-t-8 border-sky-400">
+            <h2 class="text-3xl font-bold mb-10 text-center text-sky-900">Riwayat Sekolah 🎓</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="p-6 bg-white/50 rounded-3xl border-2 border-dashed border-sky-200">
+                    <div class="text-4xl mb-4">🏫</div>
+                    <h4 class="font-bold text-xl text-sky-900">SDN 1 Wanguk</h4>
+                    <p class="text-blue-600 font-medium italic">Lulus Tahun 2020</p>
+                </div>
+                <div class="p-6 bg-white/50 rounded-3xl border-2 border-dashed border-sky-200">
+                    <div class="text-4xl mb-4">🎒</div>
+                    <h4 class="font-bold text-xl text-sky-900">SMPN 2 Anjatan</h4>
+                    <p class="text-blue-600 font-medium italic">Lulus Tahun 2023</p>
+                </div>
+                <div class="p-6 bg-white/50 rounded-3xl border-2 border-yellow-300 bg-yellow-50/30">
+                    <div class="text-4xl mb-4">👩‍🎓</div>
+                    <h4 class="font-bold text-xl text-sky-900">SMK Al-Irsyad Al-Islamiyyah Haurgeulis</h4>
+                    <p class="text-yellow-600 font-bold italic">Lulus Tahun 2026</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <div class="mt-10">
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 24 150 28" preserveAspectRatio="none">
+            <defs><path id="wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" /></defs>
+            <g class="parallax">
+                <use href="#wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
+                <use href="#wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                <use href="#wave" x="48" y="7" fill="#fff" />
+            </g>
+        </svg>
+        <footer class="bg-white py-12 text-center">
+            <p class="font-bold text-sky-900 text-lg">"Keep swimming and stay cheerful!"</p>
+            <p class="text-sm opacity-40 mt-2">© 2026 Della Dwi Aulia ✨</p>
+        </footer>
+    </div>
+
+    <script>
+        function createBubbles() {
+            const container = document.getElementById('bubbles-container');
+            for(let i = 0; i < 20; i++) {
+                const b = document.createElement('div');
+                b.className = 'bubble';
+                const s = Math.random() * 50 + 15 + 'px';
+                b.style.width = s; b.style.height = s;
+                b.style.left = Math.random() * 100 + 'vw';
+                b.style.setProperty('--d', (Math.random() * 6 + 4) + 's');
+                b.style.animationDelay = (Math.random() * 5) + 's';
+                container.appendChild(b);
+            }
+        }
+
+        function quack() {
+            const toast = document.createElement('div');
+            toast.innerText = 'KWEEK! 🐣✨';
+            toast.style.position = 'fixed';
+            toast.style.bottom = '20%';
+            toast.style.left = '50%';
+            toast.style.transform = 'translateX(-50%)';
+            toast.style.background = '#ffdf00';
+            toast.style.color = '#854d0e';
+            toast.style.padding = '10px 20px';
+            toast.style.borderRadius = '20px';
+            toast.style.fontWeight = 'bold';
+            toast.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+            toast.style.zIndex = '1000';
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+        }
+
+        window.onload = createBubbles;
+    </script>
 </body>
 </html>
