@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alia's Flowers - Pesan Cinta dalam Kelopak</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Sacramento&family=Playfair+Display:italic,wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #fffafb;
+            scroll-behavior: smooth;
+        }
+        .font-cursive {
+            font-family: 'Sacramento', cursive;
+        }
+        .font-serif-italic {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+        
+        .hero-container {
+            padding: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-banner {
+            background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.2)), url('https://simangu.smksalirsyad-hgl.sch.id/apimangu/uploads/siswa/232410009/1773111359_132f752e.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center 30%;
+            aspect-ratio: 21 / 9;
+            width: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            position: relative;
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 40px -15px rgba(244, 114, 182, 0.3);
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner {
+                aspect-ratio: 16 / 9;
+                background-position: center center;
+            }
+        }
+
+        .btn-explore {
+            margin-bottom: 2.5rem;
+            backdrop-filter: blur(8px);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .card-hover:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 30px -5px rgba(244, 114, 182, 0.15);
+        }
+        
+        .img-container {
+            position: relative;
+            overflow: hidden;
+            height: 300px;
+            background-color: #fce7f3;
+        }
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .card-hover:hover .img-container img {
+            transform: scale(1.1);
+        }
+        
+        .rounded-logo {
+            aspect-ratio: 1 / 1;
+            border-radius: 9999px;
+            object-fit: cover;
+            border: 2px solid #fce7f3;
+        }
+
+        #custom-message {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            animation: slideUp 0.5s ease-out;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigasi -->
+    <nav class="bg-white/90 backdrop-blur-md sticky top-0 z-50 py-3 px-6 flex justify-between items-center border-b border-pink-100 shadow-sm">
+        <div class="flex items-center gap-3">
+            <img src="https://simangu.smksalirsyad-hgl.sch.id/apimangu/uploads/siswa/232410009/1773108475_4eabb176.png" 
+                 alt="Logo Alia's Flowers" 
+                 class="rounded-logo h-[45px] w-[45px]">
+            <div class="flex flex-col leading-tight">
+                <span class="text-xl font-cursive font-bold text-pink-500">Alia's Flowers</span>
+                <span class="text-[9px] text-gray-400 tracking-widest uppercase font-bold">by Della Dwi Aulia</span>
+            </div>
+        </div>
+        
+        <div class="space-x-8 text-pink-600 font-semibold hidden lg:flex items-center">
+            <a href="#home" class="hover:text-pink-400 transition">Beranda</a>
+            <a href="#katalog" class="hover:text-pink-400 transition">Koleksi</a>
+            <a href="#testimoni" class="hover:text-pink-400 transition">Testimoni</a>
+            <a href="#lokasi" class="hover:text-pink-400 transition">Lokasi</a>
+        </div>
+        
+        <a href="https://wa.me/6285772813229" target="_blank" class="bg-pink-400 text-white px-5 py-2 rounded-full hover:bg-pink-500 transition shadow-md font-bold text-sm">
+            <i class="fab fa-whatsapp mr-2"></i>Pesan
+        </a>
+    </nav>
+
+    <!-- Hero Banner -->
+    <div id="home" class="hero-container">
+        <section class="hero-banner">
+            <a href="#katalog" class="btn-explore bg-white/90 text-pink-500 px-8 py-3 rounded-full font-bold shadow-xl hover:bg-pink-500 hover:text-white transition-all text-sm uppercase tracking-widest border border-pink-100">
+                Lihat Koleksi ✨
+            </a>
+        </section>
+    </div>
+
+    <!-- Slogan Section -->
+    <div class="py-12 max-w-2xl mx-auto text-center px-6">
+        <h2 class="text-2xl md:text-3xl text-pink-500 font-cursive italic">"Bunga tidak bersaing dengan bunga di sebelahnya, ia hanya mekar."</h2>
+        <p class="text-gray-400 text-xs mt-4 uppercase tracking-[0.2em]">— Dikurasi dengan Kasih oleh Della Dwi Aulia —</p>
+    </div>
+
+    <!-- Katalog Section -->
+    <section id="katalog" class="py-16 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+            <span class="text-pink-400 font-bold tracking-widest uppercase text-xs">Pilihan Produk</span>
+            <h3 class="text-3xl font-bold text-gray-800 mt-2 mb-4">Pilih Pesanmu Hari Ini</h3>
+            <div class="w-16 h-1 bg-pink-300 mx-auto rounded-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Produk Baru: Baby Breath Pink -->
+            <div class="bg-white rounded-[2rem] overflow-hidden shadow-sm border border-pink-100 card-hover">
+                <div class="img-container">
+                    <img src="https://simangu.smksalirsyad-hgl.sch.id/apimangu/uploads/siswa/232410009/1773114422_b425c744.jpg" alt="Baby Breath Pink">
+                </div>
+                <div class="p-6 text-center">
+                    <h4 class="font-bold text-gray-800 text-lg mb-1">Baby Breath Pink</h4>
+                    <p class="text-[10px] text-pink-400 font-bold mb-4 uppercase italic">Sentuhan kelembutan abadi</p>
+                    <div class="flex justify-between items-center pt-4 border-t border-pink-50">
+                        <span class="text-pink-600 font-bold text-lg">Rp 15rb</span>
+                        <button onclick="orderViaWA('Baby Breath Pink', '15rb')" class="bg-pink-400 text-white w-9 h-9 flex items-center justify-center rounded-xl hover:bg-pink-500 transition shadow-sm">
+                            <i class="fas fa-shopping-cart text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk 1 -->
+            <div class="bg-white rounded-[2rem] overflow-hidden shadow-sm border border-pink-100 card-hover">
+                <div class="img-container">
+                    <img src="https://simangu.smksalirsyad-hgl.sch.id/apimangu/uploads/siswa/232410009/1773107838_42a2bcae.jpg" alt="Ceria Matahari">
+                </div>
+                <div class="p-6 text-center">
+                    <h4 class="font-bold text-gray-800 text-lg mb-1">Ceria Matahari</h4>
+                    <p class="text-[10px] text-pink-400 font-bold mb-4 uppercase italic">Bawa kehangatan mentari</p>
+                    <div class="flex justify-between items-center pt-4 border-t border-pink-50">
+                        <span class="text-pink-600 font-bold text-lg">Rp 150rb</span>
+                        <button onclick="orderViaWA('Ceria Matahari', '150rb')" class="bg-pink-400 text-white w-9 h-9 flex items-center justify-center rounded-xl hover:bg-pink-500 transition shadow-sm">
+                            <i class="fas fa-shopping-cart text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk 2 -->
+            <div class="bg-white rounded-[2rem] overflow-hidden shadow-sm border border-pink-100 card-hover">
+                <div class="img-container">
+                    <img src="https://simangu.smksalirsyad-hgl.sch.id/apimangu/uploads/siswa/232410009/1773108069_2ab895be.jpg" alt="Keagungan Lily">
+                </div>
+                <div class="p-6 text-center">
+                    <h4 class="font-bold text-gray-800 text-lg mb-1">Keagungan Lily</h4>
+                    <p class="text-[10px] text-pink-400 font-bold mb-4 uppercase italic">Lambang ketulusan hati</p>
+                    <div class="flex justify-between items-center pt-4 border-t border-pink-50">
+                        <span class="text-pink-600 font-bold text-lg">Rp 120rb</span>
+                        <button onclick="orderViaWA('Keagungan Lily', '120rb')" class="bg-pink-400 text-white w-9 h-9 flex items-center justify-center rounded-xl hover:bg-pink-500 transition shadow-sm">
+                            <i class="fas fa-shopping-cart text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Produk 3 -->
+            <div class="bg-white rounded-[2rem] overflow-hidden shadow-sm border border-pink-100 card-hover">
+                <div class="img-container">
+                    <img src="https://simangu.smksalirsyad-hgl.sch.id/apimangu/uploads/siswa/232410009/1773108189_05b542e7.jpg" alt="Gairah Mawar">
+                </div>
+                <div class="p-6 text-center">
+                    <h4 class="font-bold text-gray-800 text-lg mb-1">Gairah Mawar</h4>
+                    <p class="text-[10px] text-pink-400 font-bold mb-4 uppercase italic">Klasik, berani, penuh cinta</p>
+                    <div class="flex justify-between items-center pt-4 border-t border-pink-50">
+                        <span class="text-pink-600 font-bold text-lg">Rp 70rb</span>
+                        <button onclick="orderViaWA('Gairah Mawar', '70rb')" class="bg-pink-400 text-white w-9 h-9 flex items-center justify-center rounded-xl hover:bg-pink-500 transition shadow-sm">
+                            <i class="fas fa-shopping-cart text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Owner & Testimoni -->
+    <section id="testimoni" class="py-16 px-6 bg-pink-50/30">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-pink-500 font-cursive">Cerita Dari Pelanggan 💖</h3>
+                <p class="text-gray-500 text-xs mt-2 italic tracking-widest uppercase">Pelayanan Terbaik dari Della Dwi Aulia</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-[1.5rem] border border-pink-100 shadow-sm">
+                    <p class="text-xs text-gray-600 mb-4 italic">"Bunganya segar-segar banget! Rangkaian Kak Della nggak pernah ngecewain. Pas buat hadiah spesial."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 font-bold text-[10px]">BM</div>
+                        <span class="text-[10px] font-bold text-gray-800">Budi - Pelanggan Setia</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-[1.5rem] border border-pink-100 shadow-sm">
+                    <p class="text-xs text-gray-600 mb-4 italic">"Wrapping-nya rapi dan estetik parah. Langsung jadi langganan kalau mau beli buket wisuda!"</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center text-pink-500 font-bold text-[10px]">SC</div>
+                        <span class="text-[10px] font-bold text-gray-800">Siska - Wisudawan Berbahagia</span>
+                    </div>
+                </div>
+
+                <!-- Form Testimoni -->
+                <div class="bg-white rounded-[2rem] p-6 border border-pink-100 shadow-xl">
+                    <h4 class="text-sm font-bold text-pink-600 mb-4 text-center italic">Kirim Feedback</h4>
+                    <form onsubmit="submitTesti(event)" class="space-y-3">
+                        <input type="text" id="testi-name" placeholder="Nama Anda" class="w-full bg-pink-50/50 border-0 rounded-xl px-4 py-2 text-xs focus:ring-2 focus:ring-pink-300 outline-none" required>
+                        <textarea id="testi-msg" placeholder="Pesan Anda..." rows="2" class="w-full bg-pink-50/50 border-0 rounded-xl px-4 py-2 text-xs focus:ring-2 focus:ring-pink-300 outline-none" required></textarea>
+                        <button type="submit" class="w-full bg-pink-400 text-white font-bold py-2 rounded-xl hover:bg-pink-500 transition shadow-md text-[10px] uppercase tracking-widest">
+                            Kirim 🚀
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lokasi -->
+    <section id="lokasi" class="py-16 px-6">
+        <div class="max-w-4xl mx-auto bg-white rounded-[2.5rem] p-8 shadow-lg border border-pink-100 flex flex-col items-center">
+            <h3 class="text-2xl font-bold text-pink-600 mb-6 font-cursive text-center">Rumah Bunga Della Dwi Aulia</h3>
+            
+            <div class="grid md:grid-cols-2 gap-8 w-full">
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-pink-100 p-3 rounded-2xl text-pink-500">
+                            <i class="fas fa-map-marker-alt text-sm"></i>
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-gray-800 text-xs">Alamat:</h5>
+                            <p class="text-gray-500 text-[10px]">Jl. Irigasi Wanguk, Dusun Balong Adem Wetan, Wanguk, Indramayu.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-green-100 p-3 rounded-2xl text-green-500">
+                            <i class="fab fa-whatsapp text-sm"></i>
+                        </div>
+                        <div>
+                            <h5 class="font-bold text-gray-800 text-xs">WhatsApp:</h5>
+                            <p class="text-gray-500 text-[10px]">0857-7281-3229 (Della)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-pink-50 h-32 rounded-3xl border-2 border-dashed border-pink-200 flex flex-col items-center justify-center text-pink-300">
+                    <i class="fas fa-store fa-2x mb-2 opacity-30"></i>
+                    <p class="text-[10px] font-bold text-pink-600">Terima Kasih Atas Kunjungan Anda</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-12 px-6 text-center border-t border-pink-50">
+        <div class="mx-auto mb-4 h-16 w-16">
+            <img src="https://simangu.smksalirsyad-hgl.sch.id/apimangu/uploads/siswa/232410009/1773108475_4eabb176.png" 
+                 alt="Logo Alia's Flowers" 
+                 class="rounded-logo w-full h-full border-none shadow-sm">
+        </div>
+        
+        <h2 class="text-3xl font-cursive text-pink-500 mb-1">Alia's Flowers</h2>
+        <p class="text-pink-400 text-xs font-bold mb-6 tracking-widest uppercase">Owned by Della Dwi Aulia</p>
+        
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-6 mb-8 text-[11px] font-bold">
+            <a href="https://dellaaulia30.github.io" target="_blank" class="text-pink-500 hover:text-pink-600 flex items-center gap-2 border-b border-pink-100 pb-1">
+                <i class="fas fa-globe"></i> Portofolio Pemilik
+            </a>
+            <a href="https://www.instagram.com/dell4dwii_/" target="_blank" class="text-pink-500 hover:text-pink-600 flex items-center gap-2 border-b border-pink-100 pb-1">
+                <i class="fab fa-instagram"></i> @dell4dwii_
+            </a>
+        </div>
+        
+        <p class="text-gray-300 text-[8px] tracking-[0.3em] uppercase">© 2024 Alia's Flowers • Indramayu • Made with ❤️</p>
+    </footer>
+
+    <!-- Notifikasi Floating -->
+    <div id="custom-message" class="bg-white border border-pink-200 shadow-2xl rounded-3xl p-4 flex items-center gap-4 max-w-xs">
+        <div id="msg-icon" class="bg-pink-100 text-pink-500 p-3 rounded-2xl">
+            <i class="fas fa-shopping-cart fa-lg"></i>
+        </div>
+        <div>
+            <p id="msg-title" class="text-xs font-bold text-gray-800">Keranjang</p>
+            <p id="msg-text" class="text-[10px] text-gray-500">Membuka detail pesanan...</p>
+        </div>
+    </div>
+
+    <script>
+        function orderViaWA(productName, price) {
+            const phoneNumber = "6285772813229";
+            const message = `Halo Alia's Flowers! ✨%0A%0ASaya tertarik untuk membeli *${productName}* seharga *${price}*.%0A%0AApakah stok masih ada? 🌸💐`;
+            
+            showFloatingMessage("Menuju Keranjang...", "Menghubungkan Anda ke Della Dwi Aulia.");
+            setTimeout(() => {
+                window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+                hideFloatingMessage();
+            }, 1000);
+        }
+
+        function submitTesti(e) {
+            e.preventDefault();
+            const name = document.getElementById('testi-name').value;
+            showFloatingMessage(`Halo ${name}!`, "Pesan Anda telah kami simpan.");
+            e.target.reset();
+            setTimeout(hideFloatingMessage, 3000);
+        }
+
+        function showFloatingMessage(title, text) {
+            const msgBox = document.getElementById('custom-message');
+            document.getElementById('msg-title').innerText = title;
+            document.getElementById('msg-text').innerText = text;
+            msgBox.style.display = 'flex';
+        }
+
+        function hideFloatingMessage() {
+            document.getElementById('custom-message').style.display = 'none';
+        }
+    </script>
+</body>
+                          </html>
